@@ -1,4 +1,8 @@
 package com.example.SATS.Repository;
 
-public interface FacultyRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.example.SATS.Entity.Faculty;
+
+public interface FacultyRepository extends JpaRepository<Faculty,Integer> {
 }
