@@ -1,26 +1,38 @@
 package com.example.SATS.Entity;
-
 import jakarta.persistence.*;
-
 import java.time.LocalDateTime;
 
 @Entity
 public class StudentCourse {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer StudentCourseId;
+
     @ManyToOne
     @JoinColumn(name = "student_id")
     private Student student;
 
-    @Id
     @ManyToOne
     @JoinColumn(name = "course_id")
     private Course course;
 
     @Column(updatable = false)
-    private LocalDateTime createdAt = LocalDateTime.now();
+    private LocalDateTime createdAt;
 
-    private LocalDateTime updatedAt = LocalDateTime.now();
+    private LocalDateTime updatedAt;
+
+
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        this.updatedAt = LocalDateTime.now();
+    }
 
     // Getters and Setters
 
