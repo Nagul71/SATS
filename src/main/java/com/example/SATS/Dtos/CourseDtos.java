@@ -1,39 +1,31 @@
-package com.example.SATS.Entity;
+package com.example.SATS.Dtos;
 
 import java.time.LocalDateTime;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.example.SATS.Entity.Course;
 
-@Entity
-public class Course {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class CourseDtos {
     private Integer courseId;
-
     private String courseName;
-
-    @Column(updatable = false)
+    
     private LocalDateTime createdAt;
-
     private LocalDateTime updatedAt;
 
-    // No-args contructor
-    public Course(){
-    }
-
-    // Custom constructor excluding the courseId
-    public Course(String courseName){
+    public CourseDtos(String courseName){
         this.courseName = courseName;
-        this.createdAt = LocalDateTime.now();
-        this.updatedAt = LocalDateTime.now();
+        this.updatedAt = null;
+        this.createdAt = null;
     }
 
+    public CourseDtos(Course course){
+        this.courseId = course.getCourseId();
+        this.courseName = course.getCourseName();
+        this.createdAt = course.getCreatedAt();
+        this.updatedAt = course.getUpdatedAt();
+    }
 
+    public CourseDtos(){
+    }
 
     public Integer getCourseId() {
         return courseId;
@@ -66,5 +58,4 @@ public class Course {
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
     }
-// Getters and Setters
 }
