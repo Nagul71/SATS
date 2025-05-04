@@ -1,7 +1,6 @@
 package com.example.SATS.Controller;
 import java.util.List;
 
-import org.apache.catalina.connector.ResponseFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,12 +11,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.SATS.Dtos.FacultyResponseDtos;
 import com.example.SATS.Dtos.FacultyDtos;
+import com.example.SATS.Dtos.FacultyResponseDtos;
 import com.example.SATS.Entity.Faculty;
+import com.example.SATS.Entity.FacultyCourse;
 import com.example.SATS.Service.FacultyService;
-import org.springframework.web.bind.annotation.RequestParam;
-
 
 @RestController
 @RequestMapping("/api/faculty")
@@ -25,6 +23,10 @@ public class FacultyController {
 
     @Autowired
     private FacultyService facultyService;
+
+
+    
+
     @PostMapping("/")
     public FacultyResponseDtos addfaculty(@RequestBody FacultyDtos facultyDtos)
     {
@@ -39,6 +41,12 @@ public class FacultyController {
     @GetMapping("/{id}")
     public FacultyResponseDtos getFacultyById(@PathVariable Integer id) {
         return facultyService.getByIdFaculty(id);
+    }
+
+    @GetMapping("/courses/{id}")
+    public List<FacultyCourse> getCoursesById(@PathVariable Integer id)
+    {
+        return facultyService.getCourseByFacultyId(id);
     }
     
     @PutMapping("/{id}")

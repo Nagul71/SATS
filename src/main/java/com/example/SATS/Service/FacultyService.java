@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import com.example.SATS.Dtos.FacultyDtos;
 import com.example.SATS.Dtos.FacultyResponseDtos;
 import com.example.SATS.Entity.Faculty;
+import com.example.SATS.Entity.FacultyCourse;
+import com.example.SATS.Repository.FacultyCourseRepository;
 import com.example.SATS.Repository.FacultyRepository;
 
 @Service
@@ -17,6 +19,11 @@ public class FacultyService {
 
     @Autowired
     private FacultyRepository facultyRepo;
+
+
+    @Autowired
+    private FacultyCourseRepository facultyCourseRepo;
+
     public FacultyResponseDtos addFaculty(FacultyDtos Facultydto)
     {
         Faculty facultyEntity = new Faculty(
@@ -94,5 +101,9 @@ public class FacultyService {
         else{
             throw new RuntimeException("Faculty With ID"+id+"not Found.");
         }
+    }
+
+    public List<FacultyCourse> getCourseByFacultyId(Integer id) {
+        return facultyCourseRepo.findByFaculty_FacultyId(id);
     }
 }

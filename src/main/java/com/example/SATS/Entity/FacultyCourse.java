@@ -1,18 +1,27 @@
 package com.example.SATS.Entity;
 
-import jakarta.persistence.*;
-
 import java.time.LocalDateTime;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class FacultyCourse {
 
+
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Integer FacultyCourseId;
+
     @ManyToOne
     @JoinColumn(name = "faculty_id")
     private Faculty faculty;
 
-    @Id
     @ManyToOne
     @JoinColumn(name = "course_id")
     private Course course;
