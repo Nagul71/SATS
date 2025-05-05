@@ -51,7 +51,6 @@ public class FacultyController {
     
     @PutMapping("/{id}")
     public FacultyResponseDtos FacultyUpdate(@PathVariable Integer id,@RequestBody FacultyDtos facultyDtos) {
-        //TODO: process POST request
         return facultyService.updateFaculty(id,facultyDtos);
     }
 

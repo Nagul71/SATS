@@ -10,13 +10,22 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import com.example.SATS.Dtos.StudentDtos;
 import com.example.SATS.Dtos.StudentResponseDtos;
 import com.example.SATS.Entity.Student;
+import com.example.SATS.Entity.StudentCourse;
+import com.example.SATS.Repository.StudentCourseRepository;
 import com.example.SATS.Repository.StudentRepository;
 
 @Service
 public class StudentService {
 
     @Autowired
+    private StudentCourseRepository studentCourseRepo;
+
+    @Autowired
     private StudentRepository studentRepo;
+
+    public List<StudentCourse> getAllCourseStudentId(Integer id){
+        return studentCourseRepo.findBystudent_studentId(id);
+    }
 
     public List<Student> getAllStudents(){
         return studentRepo.findAll();
@@ -99,4 +108,5 @@ public class StudentService {
             throw new RuntimeException("Student with the id "+ id + " not found");
         }
     }
+
 }
