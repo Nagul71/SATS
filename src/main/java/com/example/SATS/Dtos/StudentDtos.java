@@ -1,61 +1,27 @@
-package com.example.SATS.Entity;
-import jakarta.persistence.*;
+package com.example.SATS.Dtos;
 
 import java.time.LocalDateTime;
 
-@Entity
-public class Student {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer studentId;
-
+public class StudentDtos {
     private String name;
-
-    @Column(unique = true)
+    private String username;
+    private String password;
     private String mailId;
 
-    private String username;
-
-    private String password;
-
-    @Column(updatable = false)
     private LocalDateTime createdAt;
-
     private LocalDateTime updatedAt;
 
-
-    @PrePersist
-    protected void onCreate() {
-        this.createdAt = LocalDateTime.now();
-        this.updatedAt = LocalDateTime.now();
-    }
-
-    @PreUpdate
-    protected void onUpdate() {
-        this.updatedAt = LocalDateTime.now();
-    }
-
-    //No-args Constructor
-    public Student(){
-    }
-
-    //Custom Constructor
-    public Student(String name,String mailId,String username,
-    String password){
+    public StudentDtos(String name,String username,String password,
+    String mailId){
         this.name = name;
         this.username = username;
-        this.mailId = mailId;
         this.password = password;
+        this.mailId = mailId;
+        this.createdAt = null;
+        this.updatedAt = null;
     }
 
-
-    public Integer getStudentId() {
-        return studentId;
-    }
-
-    public void setStudentId(Integer studentId) {
-        this.studentId = studentId;
+    public StudentDtos(){    
     }
 
     public String getName() {
@@ -64,14 +30,6 @@ public class Student {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getMailId() {
-        return mailId;
-    }
-
-    public void setMailId(String mailId) {
-        this.mailId = mailId;
     }
 
     public String getUsername() {
@@ -90,6 +48,14 @@ public class Student {
         this.password = password;
     }
 
+    public String getMailId() {
+        return mailId;
+    }
+
+    public void setMailId(String mailId) {
+        this.mailId = mailId;
+    }
+
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
@@ -105,6 +71,4 @@ public class Student {
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
     }
-
-    // Getters and Setters
 }

@@ -1,8 +1,12 @@
 package com.example.SATS.Entity;
 
-import jakarta.persistence.*;
-
 import java.time.LocalDateTime;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Entity
 public class Course {
@@ -14,18 +18,18 @@ public class Course {
     private String courseName;
 
     @Column(updatable = false)
-    private LocalDateTime createdAt ;
+    private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
 
-    @PrePersist
-    protected void onCreate() {
-        this.createdAt = LocalDateTime.now();
-        this.updatedAt = LocalDateTime.now();
+    // No-args contructor
+    public Course(){
     }
 
-    @PreUpdate
-    protected void onUpdate() {
+    // Custom constructor excluding the courseId
+    public Course(String courseName){
+        this.courseName = courseName;
+        this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
     }
 
@@ -60,7 +64,4 @@ public class Course {
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
     }
-
-
-// Getters and Setters
 }

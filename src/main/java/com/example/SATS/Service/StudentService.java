@@ -14,6 +14,9 @@ import java.util.Optional;
 public class StudentService {
 
     @Autowired
+    private StudentCourseRepository studentCourseRepo;
+
+    @Autowired
     private StudentRepository studentRepo;
 
     @Autowired
@@ -46,6 +49,6 @@ public class StudentService {
     }
 
     public List<StudentCourse> getstudents(Integer courseId) {
-        return studentCourseRepository.findByCourse_CourseId(courseId);
+        return studentCourseRepo.findByCourse_CourseId(courseId);
     }
 }

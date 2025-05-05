@@ -1,13 +1,26 @@
 package com.example.SATS.Entity;
-import jakarta.persistence.*;
-
 import java.time.LocalDateTime;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
+import jakarta.persistence.SequenceGenerator;
 
 @Entity
 public class Faculty {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(
+        name = "faculty_seq",
+        sequenceName = "faculty_sequence",
+        initialValue = 5,   // 👈 Start value
+        allocationSize = 1
+    )
     private Integer facultyId;
 
     @Column(unique = true)
@@ -34,8 +47,20 @@ public class Faculty {
         this.updatedAt = LocalDateTime.now();
     }
 
-    // Getters and Setters
+    // No-args Constructor 
+    public Faculty(){
+    }
 
+    // custom constructor excluding the faculty-id
+    public Faculty(String username,String password,String mailId){
+        this.username = username;
+        this.password = password;
+        this.mailId = mailId;
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
+    }
+    
+    // Getters and Setters
 
     public Integer getFacultyId() {
         return facultyId;
