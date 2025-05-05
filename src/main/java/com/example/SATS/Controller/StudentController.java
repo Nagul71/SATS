@@ -1,9 +1,8 @@
 package com.example.SATS.Controller;
 import com.example.SATS.Entity.Attendance;
-import com.example.SATS.Entity.Course;
 import com.example.SATS.Entity.Student;
 import com.example.SATS.Entity.StudentCourse;
-import com.example.SATS.Repository.StudentCourseRepo;
+import com.example.SATS.Repository.StudentCourseRepository;
 import com.example.SATS.Service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +18,7 @@ public class StudentController {
     private StudentService studentService;
 
     @Autowired
-    private StudentCourseRepo studentCourseRepo;
+    private StudentCourseRepository studentCourseRepository;
 
     // for adding the student
     @PostMapping("/addstudent")

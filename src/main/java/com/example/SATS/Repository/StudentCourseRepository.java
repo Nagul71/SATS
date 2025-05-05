@@ -6,7 +6,7 @@ import java.util.List;
 
 
 @Repository
-public interface StudentCourseRepo extends JpaRepository<StudentCourse,Integer> {
+public interface StudentCourseRepository extends JpaRepository<StudentCourse,Integer> {
     List<StudentCourse> findByStudent_StudentId(Integer studentId);
 
     List<StudentCourse> findByCourse_CourseId(Integer courseId);

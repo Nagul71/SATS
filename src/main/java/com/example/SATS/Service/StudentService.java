@@ -1,17 +1,12 @@
 package com.example.SATS.Service;
 import com.example.SATS.Entity.Attendance;
-import com.example.SATS.Entity.Course;
 import com.example.SATS.Entity.Student;
 import com.example.SATS.Entity.StudentCourse;
 import com.example.SATS.Repository.AttendanceRepository;
-import com.example.SATS.Repository.CourseRepository;
-import com.example.SATS.Repository.StudentCourseRepo;
+import com.example.SATS.Repository.StudentCourseRepository;
 import com.example.SATS.Repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -22,7 +17,7 @@ public class StudentService {
     private StudentRepository studentRepo;
 
     @Autowired
-    private StudentCourseRepo studentCourseRepo;
+    private StudentCourseRepository studentCourseRepository;
 
     @Autowired
     private AttendanceRepository attendanceRepository;
@@ -41,7 +36,7 @@ public class StudentService {
     }
 
     public List<StudentCourse> getcourses(Integer userId) {
-        return studentCourseRepo.findByStudent_StudentId(userId);
+        return studentCourseRepository.findByStudent_StudentId(userId);
     }
 
 
@@ -51,6 +46,6 @@ public class StudentService {
     }
 
     public List<StudentCourse> getstudents(Integer courseId) {
-        return studentCourseRepo.findByCourse_CourseId(courseId);
+        return studentCourseRepository.findByCourse_CourseId(courseId);
     }
 }
