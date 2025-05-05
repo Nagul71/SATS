@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 import com.example.SATS.Entity.Course;
 
 public class CourseDtos {
-    private Integer courseId;
     private String courseName;
     
     private LocalDateTime createdAt;
@@ -18,21 +17,12 @@ public class CourseDtos {
     }
 
     public CourseDtos(Course course){
-        this.courseId = course.getCourseId();
         this.courseName = course.getCourseName();
         this.createdAt = course.getCreatedAt();
         this.updatedAt = course.getUpdatedAt();
     }
 
     public CourseDtos(){
-    }
-
-    public Integer getCourseId() {
-        return courseId;
-    }
-
-    public void setCourseId(Integer courseId) {
-        this.courseId = courseId;
     }
 
     public String getCourseName() {
